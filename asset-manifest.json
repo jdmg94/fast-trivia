@@ -1,11 +1,11 @@
 {
-  "main.js": "/static/js/main.b14fe22f.chunk.js",
-  "main.js.map": "/static/js/main.b14fe22f.chunk.js.map",
-  "runtime~main.js": "/static/js/runtime~main.c5541365.js",
-  "runtime~main.js.map": "/static/js/runtime~main.c5541365.js.map",
-  "static/js/2.6589c092.chunk.js": "/static/js/2.6589c092.chunk.js",
-  "static/js/2.6589c092.chunk.js.map": "/static/js/2.6589c092.chunk.js.map",
-  "index.html": "/index.html",
-  "precache-manifest.271118acbd146404b188bbe27cdec2d2.js": "/precache-manifest.271118acbd146404b188bbe27cdec2d2.js",
-  "service-worker.js": "/service-worker.js"
+  "main.js": "/fast-trivia/static/js/main.676b7a44.chunk.js",
+  "main.js.map": "/fast-trivia/static/js/main.676b7a44.chunk.js.map",
+  "runtime~main.js": "/fast-trivia/static/js/runtime~main.64a901c6.js",
+  "runtime~main.js.map": "/fast-trivia/static/js/runtime~main.64a901c6.js.map",
+  "static/js/2.8a6561eb.chunk.js": "/fast-trivia/static/js/2.8a6561eb.chunk.js",
+  "static/js/2.8a6561eb.chunk.js.map": "/fast-trivia/static/js/2.8a6561eb.chunk.js.map",
+  "index.html": "/fast-trivia/index.html",
+  "precache-manifest.2ec1b33d2eb6e37c764d18b36e5ddbda.js": "/fast-trivia/precache-manifest.2ec1b33d2eb6e37c764d18b36e5ddbda.js",
+  "service-worker.js": "/fast-trivia/service-worker.js"
 }
