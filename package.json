@@ -1,13 +1,26 @@
 {
-  "name": "g2i-technical",
+  "name": "fast-trivia",
   "version": "0.1.0",
+  "homepage": "https://jdmg94.github.io/fast-trivia",
+  "author": "Jose Munoz <jdmg93@gmail.com>",
   "private": true,
   "dependencies": {
+    "he": "^1.2.0",
+    "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "react-scripts": "2.1.8"
+    "react-redux": "^7.0.2",
+    "react-router-dom": "^5.0.0",
+    "react-scripts": "2.1.8",
+    "react-spring": "^8.0.19",
+    "react-with-gesture": "^4.0.8",
+    "redux": "^4.0.1",
+    "redux-devtools-extension": "^2.13.8",
+    "redux-saga": "^1.0.2",
+    "styled-components": "^4.2.0"
   },
   "scripts": {
+    "deploy": "gh-pages -d ./build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -21,5 +34,8 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "gh-pages": "^2.0.1"
+  }
 }
