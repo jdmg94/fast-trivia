@@ -4,6 +4,7 @@ import Home from './containers/Home';
 import Game from './containers/Game';
 import { Provider } from 'react-redux';
 import Results from './containers/Results';
+import Settings from './containers/Settings';
 import { createGlobalStyle } from 'styled-components';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
@@ -42,6 +43,7 @@ const App = () => {
         <Switch>
           <Route exact path="/game" component={Game} />
           <Route exact path="/results" component={Results} />
+          <Route exact path="/settings" component={Settings} />
           <Route component={Home} />
         </Switch>
       </BrowserRouter>

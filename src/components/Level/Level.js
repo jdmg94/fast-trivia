@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 
 const Level = styled.div`
-  width: 100%;
+  padding: 2rem;
   align-items: center;
   display: inline-flex;
-  padding: 2rem;
   justify-content: space-between;
+  width: ${props => props.width ? props.width : '100%'};
 `;
 
 export default Level;

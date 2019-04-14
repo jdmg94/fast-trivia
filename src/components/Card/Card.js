@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import { animated } from 'react-spring';
 
 const Base = styled(animated.div)`
-  width: 45vh;
-  height: 85vh;  
+  width: 40vh;
+  height: 80vh;  
   max-width: 300px;
   max-height: 570px;
   border-radius: 10px;
@@ -18,21 +18,22 @@ const Base = styled(animated.div)`
 `;
 
 const Content = styled.div`
-  margin: 0; 
-  width: 100%;
+  margin: 0;
   flex-grow: 1;
   height: 100%;
   display: flex;
   padding: 1rem;
   flex-wrap: wrap;
-  align-items: center;
+  max-width: 100%;
   overflow-x: wrap;
+  align-items: center;
   flex-direction: column;
   justify-content: space-between;
 `;
 
 const borderColor = {
   hard: 'red',
+  medium: 'orange',
   easy: 'green',
 };
 

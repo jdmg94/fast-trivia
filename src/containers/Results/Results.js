@@ -1,14 +1,12 @@
-import Level from '../../components/Level';
 import { connect } from 'react-redux';
-import { actionCreators } from '../Game';
+import Level from '../../components/Level';
 import Layout from '../../components/Layout';
 import Button from '../../components/Button';
 import Content from '../../components/Content';
 import React, { useEffect, useState } from 'react';
 import { Title, Label } from '../../components/Text';
 
-const { resetGame } = actionCreators;
-const Results = ({ results, history, dispatch }) => {
+const Results = ({ results, history }) => {
   const [highscore, setHighscore] = useState(results.points);
 
   useEffect(() => {
@@ -19,12 +17,10 @@ const Results = ({ results, history, dispatch }) => {
   }, []);
 
   const restartGame = () => {
-    dispatch(resetGame());
     history.push('/game');
   };
 
   const goHome = () => {
-    dispatch(resetGame());
     history.push('/');
   };
   
@@ -48,9 +44,7 @@ const Results = ({ results, history, dispatch }) => {
           {results.points}
         </span>
         <Level 
-          style={{ 
-            width: '60vh' 
-          }}
+          width="60vh"
         >
           <Button 
             onClick={restartGame}

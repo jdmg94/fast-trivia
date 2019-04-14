@@ -5,10 +5,17 @@ import {
 } from './Game.ducks';
 
 const getGameResults = state => state.game.results;
+const getSettings = state => ({
+  level: state.settings.level,
+  numberOfQuestions: state.settings.numberOfQuestions,
+});
 
 function* fetchAllQuestions(){
   try{
-    const questions = yield call(getQuestions);
+    const {
+      level, numberOfQuestions,
+    } = yield select(getSettings);
+    const questions = yield call(getQuestions, level, numberOfQuestions);
 
     yield put(fetchQuestionsSuccess(questions));
   } catch (error){
