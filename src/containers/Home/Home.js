@@ -18,7 +18,7 @@ const Home = ({ history }) => {
       <Title color="#0000005F">
         {strings.welcome}
       </Title>
-      <Level nonResponsive width="60vw">
+      <Level width="60vw">
         <Button onClick={startGame}>
           {strings.start}
         </Button>

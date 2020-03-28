@@ -12,7 +12,8 @@ const Settings = () => {
   const [buffer, set] = useState(settings);
 
   const setLevel = level => () => set(prevState => ({ ...prevState, level }));
-  const goHome = () => history.goBack();
+  const addAmount = sum => () => set(prevState => ({ ...prevState, amount: prevState.amount + sum }));
+  const goHome = () => history.push('/');
   const submitChanges = () => {
     saveSettings(buffer);
     mutate(buffer);
@@ -21,8 +22,14 @@ const Settings = () => {
 
   return (
       <>
-        <Title>Game Settings</Title>
-        <Text>Difficulty Level:</Text>
+        <Title>{'Game Settings'}</Title>
+        <Text>{'Number of Questions:'}</Text>
+        <Level nonResponsive width="30vw">
+          <Button style={{ transform: 'scale(1.3)' }} onClick={addAmount(-1)}>-</Button>
+          <Text>{buffer.amount}</Text>
+          <Button style={{ transform: 'scale(1.3)' }} onClick={addAmount(1)}>+</Button>
+        </Level>
+        <Text>{'Difficulty Level:'}</Text>
         <Level width="30vw">
           <Button 
             onClick={setLevel('easy')}
@@ -54,8 +61,7 @@ const Settings = () => {
           >
             Hard
           </Button>
-        </Level>
-        <Text>Number of Questions: {buffer.amount}</Text>
+        </Level>        
         <Level nonResponsive width="60vw">
           <Button onClick={goHome}>Cancel</Button>
           <Button onClick={submitChanges}>Save</Button>

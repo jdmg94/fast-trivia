@@ -16,10 +16,6 @@ const Base = styled(animated.div)`
   background-position: center center;
   border: solid 2px ${props => props.color};
   box-shadow: 0 12.5px 100px -10px rgba(50, 50, 73, 0.4), 0 10px 10px -10px rgba(50, 50, 73, 0.3);
-
-  @media (max-width: 600px) {
-    margin-left: -2.5rem;
-  }
 `;
 
 const Content = styled.div`

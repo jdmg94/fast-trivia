@@ -19,7 +19,8 @@ const Results = () => {
           {'Game Results'}
         </Title>
         {
-          points === highscore && (
+          // eslint-disable-next-line eqeqeq
+          points == highscore && (
             <Title>New Record!</Title>
           )
         }
@@ -32,8 +33,8 @@ const Results = () => {
           {points}
         </span>
         <Level 
-          nonResponsive
           width="60vh"
+          nonResponsive
         >
           <Button 
             onClick={restartGame}

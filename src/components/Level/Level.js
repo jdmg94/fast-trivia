@@ -1,7 +1,6 @@
 import styled from '@emotion/styled';
 
 const Level = styled.div`
-  padding: 2rem;
   align-items: center;
   flex-direction: row;
   display: inline-flex;

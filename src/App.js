@@ -1,17 +1,17 @@
 import Home from './containers/Home';
 import Game from './containers/Game';
 import React, { Suspense } from 'react';
-import Text from './components/Text';
+import Loader from './components/Loader';
 import Results from './containers/Results';
 import Settings from './containers/Settings';
 import ErrorBoundary from './components/ErrorBoundary';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 const App = () => (
-  <BrowserRouter>
+  <BrowserRouter basename="/fast-trivia">
     <ErrorBoundary>
       <Suspense
-        fallback={<Text>loading...</Text>}
+        fallback={<Loader />}
       >
         <Switch>
           <Route exact path="/game" component={Game} />

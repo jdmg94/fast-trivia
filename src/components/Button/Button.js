@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
 const Button = styled.button`
-  margin: .5rem;
+  margin: 1em;
   cursor: pointer;
   color: #000;
   border: none;
