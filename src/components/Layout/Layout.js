@@ -1,7 +1,6 @@
-import styled from 'styled-components';
-import { animated } from 'react-spring';
+import styled from '@emotion/styled';
 
-const Layout = styled(animated.div)`
+const Layout = styled.div`
   width: 100vw;
   height: 100vh;
   display: flex;

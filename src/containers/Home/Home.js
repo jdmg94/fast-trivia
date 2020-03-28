@@ -2,26 +2,31 @@ import React from 'react';
 import Level from '../../components/Level';
 import Button from '../../components/Button';
 import { Title } from '../../components/Text';
-import Content from '../../components/Content';
+
+const strings = {
+  welcome: 'Welcome to Fast Trivia!',
+  start: 'Start Game',
+  settings: 'Settings'
+}
 
 const Home = ({ history }) => {
   const startGame = () =>  history.push('/game');
   const goToSettings = () => history.push('/settings');
 
   return (
-    <Content>
+    <>
       <Title color="#0000005F">
-        {'Welcome to Fast Trivia!'}
+        {strings.welcome}
       </Title>
-      <Level width="60vw">
+      <Level nonResponsive width="60vw">
         <Button onClick={startGame}>
-          {'Start Game'}
+          {strings.start}
         </Button>
         <Button onClick={goToSettings}>
-          {'Settings'}
+          {strings.settings}
         </Button>  
       </Level>
-    </Content>
+    </>
   );
 };
 

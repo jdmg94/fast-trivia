@@ -1,14 +1,14 @@
-import Level from '../Level';
 import Card from '../Card';
-import { Title } from '../Text';
 import Layout from '../Layout';
 import React, { useState } from 'react';
-import { useGesture } from 'react-with-gesture';
-import { useSprings, interpolate } from 'react-spring';
+import { useDrag } from 'react-use-gesture';
+import { useSprings, interpolate, animated } from 'react-spring';
 
+const friction = 50;
+const Wrapper = Layout.withComponent(animated.div)
 const from = i => ({ x: 0, rot: 0, scale: 1.5, y: -1000 })
 const to = i => ({ x: 0, y: i * -4, scale: 1, rot: -10 + Math.random() * 20, delay: i * 100 })
-const trans = (r, s) => `perspective(1500px) rotateX(30deg) rotateY(${r / 10}deg) rotateZ(${r}deg) scale(${s})`
+const getAnimation = (r, s) => `perspective(1500px) rotateX(30deg) rotateY(${r / 10}deg) rotateZ(${r}deg) scale(${s})`
 
 const Deck = ({ questions, onSubmit }) => {
   const [answers] = useState([]);
@@ -18,7 +18,7 @@ const Deck = ({ questions, onSubmit }) => {
     from: from(i),
   }));
 
-  const bind = useGesture(({
+  const bind = useDrag(({
     args: [index], down, delta: [xDelta], direction: [xDir], velocity,
   }) => {
     const dir = xDir > 0 ? 1 : -1;
@@ -32,7 +32,6 @@ const Deck = ({ questions, onSubmit }) => {
 
     set(i => {
       if(i === index){
-        const friction = 50;
         const scale = down ? 1.1 : 1;
         const isAnswered = answered.has(index);
         
@@ -78,32 +77,23 @@ const Deck = ({ questions, onSubmit }) => {
     && onSubmit(answers);
   });
 
-  return (
-    <Layout>
-      <Level>
-        <Title color="#0000005F">False</Title>
-        {
-          animation.map(({ x, y, rot, scale }, i) => (
-            <Layout
-              key={i} 
-              style={{ 
-                transform: interpolate([x, y], (x, y) => `translate3d(${x}px,${y}px,0)`) 
-              }}
-            >
-              <Card 
-                {...bind(i)}
-                data={questions[i]}
-                style={{
-                  transform: interpolate([rot, scale], trans),
-                }}
-              />
-            </Layout>
-          ))
-        }
-        <Title color="#0000005F">True</Title>
-      </Level>
-    </Layout>
-  )
+  return animation.map(({ x, y, rot, scale }, i) => (
+    <Wrapper
+      key={i}
+      style={{
+        transform: interpolate([x, y], (x, y) => `translate3d(${x}px,${y}px,0)`) 
+      }}
+    >
+      <Card 
+        {...bind(i)}
+        data={questions[i]}
+        style={{
+          position: 'relative',
+          transform: interpolate([rot, scale], getAnimation),
+        }}
+      />
+    </Wrapper>
+  ))
 };
 
 export default Deck;

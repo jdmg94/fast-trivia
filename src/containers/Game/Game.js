@@ -1,29 +1,38 @@
-import { connect } from 'react-redux';
-import React, { useEffect, useCallback } from 'react'; 
+import useSWR from 'swr';
 import Deck from '../../components/Deck';
-import { submitAnswers, fetchQuestions } from './Game.ducks';
+import React, { useCallback } from 'react'; 
+import Level from '../../components/Level';
+import { Title } from '../../components/Text';
+import { useHistory } from 'react-router-dom';
+import { getSettings } from '../../service/settings';
+import { getQuestions, calculateScore } from '../../service/questions';
 
+const settingsToKeys = ({ level, amount }) => [level, amount]
 
-const Wrapper = ({ questions, history, dispatch }) => {
-  const onSubmit = useCallback(answers => {
-    dispatch(submitAnswers(answers));
+const Game = () => {
+  const history = useHistory()
+  const { data: settings } = useSWR('settings', getSettings, { suspense:true })
+  const { data: questions = [] } = useSWR(settingsToKeys(settings), getQuestions, { suspense: true, revalidateOnFocus: process.env.NODE_ENV !== 'development' })
 
-    history.push('/results');
-  });
+  const onSubmit = useCallback(async answers => {
+    const results = await calculateScore(questions, answers)
 
-  useEffect(() => {
-    dispatch(fetchQuestions());
-  }, []);
+    history.push({ pathname: '/results', state: {
+      results,
+      settings,
+    } })
+  }, [questions, history, settings])
 
-  return questions.length > 0 && (
-    <Deck
-      onSubmit={onSubmit}
-      questions={questions} 
-    />
+  return (
+    <Level nonResponsive>
+      <Title color="#0000005F">False</Title>
+      <Deck
+        onSubmit={onSubmit}
+        questions={questions} 
+      />
+      <Title color="#0000005F">True</Title>
+    </Level>
   )
 }
 
-const mapStateToProps = state => ({
-  questions: state.game.questions,
-})
-export default connect(mapStateToProps)(Wrapper);
+export default Game;

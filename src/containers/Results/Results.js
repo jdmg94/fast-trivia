@@ -1,49 +1,38 @@
-import { connect } from 'react-redux';
+import useSWR from 'swr';
+import React from 'react';
 import Level from '../../components/Level';
-import Layout from '../../components/Layout';
 import Button from '../../components/Button';
-import Content from '../../components/Content';
-import React, { useEffect, useState } from 'react';
-import { Title, Label } from '../../components/Text';
+import Text, { Title } from '../../components/Text';
+import { useHistory, useLocation } from 'react-router-dom';
 
-const Results = ({ results, history }) => {
-  const [highscore, setHighscore] = useState(results.points);
+const Results = () => {
+  const history = useHistory()
+  const { state: { results: { points }, settings: { amount, level } } } = useLocation()
+  const { data: highscore } = useSWR(`highscore-${level}-${amount}`, key => localStorage.getItem(key), { suspense: true })
 
-  useEffect(() => {
-    const value = localStorage.getItem('highscore');
-    if(value > highscore){
-      setHighscore(value);
-    }
-  }, []);
-
-  const restartGame = () => {
-    history.push('/game');
-  };
-
-  const goHome = () => {
-    history.push('/');
-  };
+  const goHome = () => history.push('/');
+  const restartGame = () => history.push('/game');
   
   return (
-    <Layout>
-      <Content>
+      <>
         <Title color="#0000005F">
           {'Game Results'}
         </Title>
         {
-          results.points === highscore && (
+          points === highscore && (
             <Title>New Record!</Title>
           )
         }
         <span>
-          <Label>Highscore: </Label>
+          <Text>Highscore: </Text>
           {highscore}
         </span>
         <span>
-          <Label>Correct Answers: </Label>
-          {results.points}
+          <Text>Correct Answers: </Text>
+          {points}
         </span>
         <Level 
+          nonResponsive
           width="60vh"
         >
           <Button 
@@ -57,12 +46,8 @@ const Results = ({ results, history }) => {
             Go Home
           </Button>
         </Level>
-      </Content>
-    </Layout>
+      </>
   )
 };
 
-const mapStateToProps = state => ({
-  results: state.game.results,
-});
-export default connect(mapStateToProps)(Results)
+export default Results;
